@@ -28,16 +28,16 @@ To tune the process-noise Q, rather than guessing, I ran a grid search over 12 s
 
 # Limitations
 
-**1 Gaussian Noise assumption**
+**Gaussian Noise assumption:**
 The Kalman filter is provably optimal only when the noise is Gaussian, but equity returns are fat-tailed, being better modeled by a low degree of freedom Student's t (df≈3-5), which permits far more extreme moves than a Gaussian. On real data, this means the filter is no longer the optimal estimator and can be dragged by outliers on highly volatile days, exactly as the fat tails in the innovation histogram confirm.
 
-**2 Model misspecification**
+**Model misspecification:**
 No single Q simultaneously whitens the innovations and calibrates the filter. Settings that bring the standard deviation toward 1 leave substantial autocorrelations, and settings that reduce autocorrelation leave the filter underconfident. This is a structural problem, not a tuning failure. A constant-velocity Gaussian model can't represent the momentum and volatility clustering present in equity returns, so some of the structure will always remain residual.
 
-**3 Look-ahead bias in R**
+**Look-ahead bias in R:**
 The measurement-noise variance R was estimated as the variance of daily log-returns over the entire sample. Since the filter at each step effectively "sees" a noise estimate derived from future data, it introduces a mild look-ahead bias. A production implementation would use a rolling or expanding window, estimating R from only past data at each step.
 
-**4 Linear trend assumptions**
+**Linear trend assumptions:**
 The constant-velocity model assumes the underlying trend persists smoothly, but real market trends shift abruptly. A single event can reverse direction entirely. Since the model's structure assumes the previous drift continues, it can only respond to such reversals with lag.
 
 # Execution
