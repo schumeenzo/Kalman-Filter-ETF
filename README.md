@@ -6,7 +6,7 @@ A constant-velocity Kalman filter, implemented from scratch in NumPy, that estim
 # The Problem
 The Kalman filter, developed by Rudolf Kálmán in 1960, was built to estimate a hidden state from noisy measurements. The same problem that guided Apollo's navigation is applied here to the markets. At each step, it blends a prediction from its motion model with the incoming measurement, weighting the two by their relative uncertainty: noisy measurements make it lean towards its prediction; an uncertain prediction makes it lean toward the data. Its central assumption is Gaussian noise, which holds for spacecraft's sensors but is known to break for equity returns. This project extracts the underlying trend of the Nasdaq-100 from noisy prices and examines what broken assumptions cost.
 
-![QQQ daily close price, 2019-2025]
+![QQQ daily close price, 2019-2025](images/qqq_raw_close.png)
 
 # Build
 
